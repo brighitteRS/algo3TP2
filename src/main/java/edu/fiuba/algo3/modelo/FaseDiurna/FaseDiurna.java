@@ -48,6 +48,6 @@ public class FaseDiurna {
     }
 
     public void aplicarResultadoVotacion(ResultadoVotacion resultado, EstadoPartida estado){
-        estado.eliminar(resultado.ganador());
+        resultado.resolver(estado);
     }
 }

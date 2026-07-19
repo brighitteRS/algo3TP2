@@ -6,6 +6,7 @@ public class JugadorNulo extends Jugador {
 
     public static final JugadorNulo INSTANCIA = new JugadorNulo();
 
+    @Override
     public void eliminar() {
     }
 }
