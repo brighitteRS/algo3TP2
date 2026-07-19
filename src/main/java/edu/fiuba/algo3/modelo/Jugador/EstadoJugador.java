@@ -9,4 +9,6 @@ public interface EstadoJugador {
     void estaVivo();
 
     EstadoJugador morir();
+
+    Rol revelarCarta(Rol rol);
 }

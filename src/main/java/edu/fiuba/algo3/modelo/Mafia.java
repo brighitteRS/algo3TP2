@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas.*;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Partida.Jugadores;
 import edu.fiuba.algo3.modelo.Votacion.*;
+import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.ReglaDesempate;
 
 public class Mafia {
 
@@ -33,7 +34,7 @@ public class Mafia {
 
     public void votar(Jugador mafioso, Jugador objetivo) {
 
-        mafioso.validarPuedeVotar();
+        mafioso.validarPuedeActuar();
         objetivo.validarPuedeSerObjetivo();
 
         if (mafioso.esMiComplice(objetivo)) {
@@ -43,11 +44,14 @@ public class Mafia {
         urna.registrar(new Voto(mafioso, objetivo));
     }
 
-    public ResultadoVotacion resolverVotacion() {
-        return votacion.resolver();
+    public ResultadoVotacion resolverVotacion(ReglaDesempate regla) {
+        return votacion.resolver(regla);
     }
 
-    public AccionNocturna decidirAtaque(){
-        return votacion.resolver().ataque();
+    public AccionNocturna decidirAtaque(ReglaDesempate regla){
+
+        Jugador victima = resolverVotacion(regla).ganador();
+
+        return new Ataque(victima);
     }
 }

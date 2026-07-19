@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Jugador;
 
+import edu.fiuba.algo3.modelo.NullPattern.RolNulo;
 
 public class Vivo implements EstadoJugador {
 
@@ -18,5 +19,10 @@ public class Vivo implements EstadoJugador {
 
     @Override
     public void estaVivo() {
+    }
+
+    @Override
+    public Rol revelarCarta(Rol rol) {
+        return RolNulo.INSTANCIA;
     }
 }

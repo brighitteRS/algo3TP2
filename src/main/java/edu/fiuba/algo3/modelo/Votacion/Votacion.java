@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Votacion;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Partida.Jugadores;
 import edu.fiuba.algo3.modelo.NullPattern.JugadorNulo;
+import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.ReglaDesempate;
 
 public class Votacion {
 
@@ -12,21 +13,26 @@ public class Votacion {
         this.urna = urna;
     }
 
-    public ResultadoVotacion resolver() {
+    public ResultadoVotacion resolver(ReglaDesempate regla) {
 
         Jugadores candidatos = obtenerCandidatos();
 
         ResultadoVotacion resultado;
 
         if (candidatos.estaVacio()) {
+
             resultado = new ResultadoEmpate();
-        }
-        else {
+
+        } else {
+
             Jugador ganador = encontrarGanador(candidatos);
 
             if (hayEmpate(candidatos, ganador)) {
-                resultado = new ResultadoEmpate();
+
+                resultado = regla.resolver(this);
+
             } else {
+
                 resultado = new ResultadoGanador(ganador);
             }
         }

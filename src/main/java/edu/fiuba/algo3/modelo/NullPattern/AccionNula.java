@@ -13,4 +13,7 @@ public class AccionNula implements AccionNocturna {
     @Override
     public void registrarEn(HistorialNocturno estado) {
     }
+
+    @Override
+    public void actuar(){}
 }

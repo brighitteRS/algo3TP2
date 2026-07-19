@@ -1,0 +1,53 @@
+package edu.fiuba.algo3.modelo.FaseDiurna;
+
+import edu.fiuba.algo3.modelo.Jugador.Jugador;
+import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
+import edu.fiuba.algo3.modelo.Votacion.Nominaciones.*;
+import edu.fiuba.algo3.modelo.Votacion.*;
+import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.ReglaDesempate;
+
+public class FaseDiurna {
+
+    private final Nominaciones nominaciones;
+    private final Votacion votacion;
+    private final Urna urna;
+    private HistorialDiurno historial;
+
+    public FaseDiurna(){
+        nominaciones = new Nominaciones();
+        urna = new Urna();
+        votacion = new Votacion(urna);
+        historial = new HistorialDiurno();
+    }
+
+    public void nominar(Jugador nominador, Jugador nominado) {
+
+        Nominacion nominacion = new Nominacion(nominador, nominado);
+
+        nominaciones.registrar(nominacion);
+        historial.registrarNominacion(nominacion);
+    }
+
+    public void votar(Jugador votador, Jugador votado) {
+
+        nominaciones.validarEstaNominado(votado);
+        Voto voto = new Voto(votador, votado);
+
+        urna.registrar(voto);
+        historial.registrarVoto(voto);
+    }
+
+    public void abstenerse(Jugador jugador){
+
+        jugador.validarPuedeActuar();
+        historial.registrarAbstencion(new Abstencion(jugador));
+    }
+
+    public ResultadoVotacion resolverVotacion(ReglaDesempate regla){
+        return votacion.resolver(regla);
+    }
+
+    public void aplicarResultadoVotacion(ResultadoVotacion resultado, EstadoPartida estado){
+        estado.eliminar(resultado.ganador());
+    }
+}

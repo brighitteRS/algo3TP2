@@ -19,4 +19,7 @@ public class Proteccion implements AccionNocturna {
     public void registrarEn(HistorialNocturno historial) {
         historial.registrarProteccion(this);
     }
+
+    @Override
+    public void actuar() {}
 }

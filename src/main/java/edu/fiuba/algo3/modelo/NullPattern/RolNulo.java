@@ -5,4 +5,8 @@ import edu.fiuba.algo3.modelo.Jugador.Rol;
 public class RolNulo extends Rol {
 
     public static final RolNulo INSTANCIA = new RolNulo();
+
+    private RolNulo() {
+        super(BandoNulo.INSTANCIA);
+    }
 }

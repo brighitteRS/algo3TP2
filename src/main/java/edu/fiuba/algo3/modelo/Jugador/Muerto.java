@@ -23,4 +23,9 @@ public class Muerto implements EstadoJugador {
     public void estaVivo() {
         throw new JugadorMuertoException();
     }
+
+    @Override
+    public Rol revelarCarta(Rol rol) {
+        return rol;
+    }
 }

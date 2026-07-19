@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Jugador;
 
+import edu.fiuba.algo3.modelo.Jugador.Bando.Bando;
 import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
 import edu.fiuba.algo3.modelo.Excepciones.AccesoARolNoPermitidoExcepcion;
 import edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas.AccionNocturna;
@@ -12,6 +13,7 @@ public class Jugador {
     private Rol rol;
     private EstadoJugador estado;
     private Jugadores complices;
+    private final HistorialEleccionesJugador historial;
 
     public Jugador() {
         this(0, RolNulo.INSTANCIA);
@@ -27,6 +29,7 @@ public class Jugador {
         this.rol = rol;
         this.estado = new Vivo();
         this.complices = new Jugadores();
+        this.historial = new HistorialEleccionesJugador();
     }
 
     public void eliminar() {
@@ -48,6 +51,8 @@ public class Jugador {
         return rol;
     }
 
+    public Rol cartaRevelada() {return estado.revelarCarta(rol);}
+
     public void recibirComplices(Jugadores jugadores) {
         this.complices = new Jugadores(jugadores);
     }
@@ -64,13 +69,36 @@ public class Jugador {
         estado.validarPuedeSerObjetivo();
     }
 
-    public void validarPuedeVotar() {
+    public void validarPuedeActuar() {
         estado.validarPuedeActuar();
     }
 
     public AccionNocturna actuarNoche(Jugador objetivo) {
 
+        objetivo.validarPuedeSerObjetivo();
         estado.validarPuedeActuar();
-        return rol.actuarNoche(this, objetivo);
+
+        return rol.actuarNoche(this,objetivo);
+    }
+
+    public void recibirResultadoInvestigacion(Bando bando){
+        estado.validarPuedeActuar();
+        rol.recibirResultadoInvestigacion(bando);
+    }
+
+    public Bando obtenerResultadoInvestigacion() {
+        return rol.resultadoInvestigacion();
+    }
+
+    public Bando bandoVisibleParaInvestigacion() {
+        return rol.bandoInvestigacion();
+    }
+
+    public void validarEleccion(Jugador objetivo){
+        historial.validarRepeticion(objetivo);
+    }
+
+    public void registrarEleccion(Jugador objetivo){
+        historial.registrarObjetivo(objetivo);
     }
 }

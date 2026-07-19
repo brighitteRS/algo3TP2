@@ -27,4 +27,7 @@ public class Ataque implements AccionNocturna {
     public void registrarEn(HistorialNocturno historial) {
         historial.registrarAtaque(this);
     }
+
+    @Override
+    public void actuar() {}
 }

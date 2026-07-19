@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Excepciones.*;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mafia;
 import edu.fiuba.algo3.modelo.Roles.*;
+import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.DecisionPorPadrino;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,7 +29,7 @@ public class Test05y06 {
         mafia.votar(mafioso1, ciudadano);
         mafia.votar(mafioso2, ciudadano);
 
-        Jugador victima = mafia.resolverVotacion().ganador();
+        Jugador victima = mafia.resolverVotacion(new DecisionPorPadrino()).ganador();
 
         assertEquals(ciudadano, victima);
     }
