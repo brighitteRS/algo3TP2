@@ -42,6 +42,18 @@ public class Votacion {
         return resultado;
     }
 
+    public Jugador votoDe(Jugador jugador) {
+
+        for (Voto voto : urna.votos()) {
+
+            if (voto.esDe(jugador)) {
+                return voto.votado();
+            }
+        }
+
+        return JugadorNulo.INSTANCIA;
+    }
+
     private int contarVotos(Jugador jugador) {
 
         int cantidad = 0;

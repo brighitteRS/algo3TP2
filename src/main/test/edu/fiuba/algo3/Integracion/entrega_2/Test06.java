@@ -5,8 +5,6 @@ import edu.fiuba.algo3.modelo.FaseDiurna.FaseDiurna;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.modelo.Roles.*;
-import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.SinEliminacionPorEmpate;
-import edu.fiuba.algo3.modelo.Votacion.ResultadoVotacion;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,9 +40,7 @@ public class Test06 {
         fase.votar(jugador3, jugadorAEliminar);
         fase.abstenerse(jugadorAEliminar);
 
-        ResultadoVotacion resultado = fase.resolverVotacion(new SinEliminacionPorEmpate());
-
-        fase.aplicarResultadoVotacion(resultado,estado);
+        fase.resolver(estado);
 
         assertThrows(JugadorMuertoException.class, jugadorAEliminar::estaVivo);
         assertFalse(estado.eliminados().contiene(jugador2));

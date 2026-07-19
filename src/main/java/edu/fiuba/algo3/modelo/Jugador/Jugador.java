@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.Jugador;
 
+import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.TurnoNocturno;
 import edu.fiuba.algo3.modelo.Jugador.Bando.Bando;
+import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.ContadorBandos;
 import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
 import edu.fiuba.algo3.modelo.Excepciones.AccesoARolNoPermitidoExcepcion;
 import edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas.AccionNocturna;
@@ -65,6 +67,10 @@ public class Jugador {
         rol.registrarme(estado, this);
     }
 
+    public TurnoNocturno agregarTurno(TurnoNocturno siguiente) {
+        return rol.agregarTurno(this, siguiente);
+    }
+
     public void validarPuedeSerObjetivo() {
         estado.validarPuedeSerObjetivo();
     }
@@ -101,4 +107,6 @@ public class Jugador {
     public void registrarEleccion(Jugador objetivo){
         historial.registrarObjetivo(objetivo);
     }
+
+    public void contabilizarEn(ContadorBandos contador) {rol.contabilizar(contador);}
 }

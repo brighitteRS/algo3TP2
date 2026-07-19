@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas;
 
 import edu.fiuba.algo3.modelo.FaseNocturna.HistorialNocturno;
-import edu.fiuba.algo3.modelo.FaseNocturna.ResultadoNocturno.AtaqueBloqueado;
-import edu.fiuba.algo3.modelo.FaseNocturna.ResultadoNocturno.AtaqueExitoso;
+import edu.fiuba.algo3.modelo.FaseNocturna.ResultadoNocturno.*;
 import edu.fiuba.algo3.modelo.FaseNocturna.ResultadoNocturno.ResultadoNoche;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 

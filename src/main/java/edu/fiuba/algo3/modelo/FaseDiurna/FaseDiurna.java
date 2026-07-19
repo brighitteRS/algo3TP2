@@ -2,22 +2,31 @@ package edu.fiuba.algo3.modelo.FaseDiurna;
 
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
+import edu.fiuba.algo3.modelo.Partida.Fase;
 import edu.fiuba.algo3.modelo.Votacion.Nominaciones.*;
 import edu.fiuba.algo3.modelo.Votacion.*;
 import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.ReglaDesempate;
+import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.SinEliminacionPorEmpate;
 
-public class FaseDiurna {
+public class FaseDiurna implements Fase {
 
     private final Nominaciones nominaciones;
     private final Votacion votacion;
     private final Urna urna;
     private HistorialDiurno historial;
+    private final ReglaDesempate reglaDesempate;
 
     public FaseDiurna(){
+        this(new SinEliminacionPorEmpate(), new HistorialDiurno());
+    }
+
+    public FaseDiurna(ReglaDesempate regla, HistorialDiurno historialInicial){
+
         nominaciones = new Nominaciones();
         urna = new Urna();
         votacion = new Votacion(urna);
-        historial = new HistorialDiurno();
+        historial = historialInicial;
+        reglaDesempate = regla;
     }
 
     public void nominar(Jugador nominador, Jugador nominado) {
@@ -43,11 +52,9 @@ public class FaseDiurna {
         historial.registrarAbstencion(new Abstencion(jugador));
     }
 
-    public ResultadoVotacion resolverVotacion(ReglaDesempate regla){
-        return votacion.resolver(regla);
-    }
+    public void resolver(EstadoPartida estado){
 
-    public void aplicarResultadoVotacion(ResultadoVotacion resultado, EstadoPartida estado){
+        ResultadoVotacion resultado = votacion.resolver(reglaDesempate);
         resultado.resolver(estado);
     }
 }

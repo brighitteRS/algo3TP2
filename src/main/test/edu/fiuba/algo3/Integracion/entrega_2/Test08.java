@@ -43,7 +43,7 @@ public class Test08 {
         mafia.votar(mafioso1, ciudadano);
         mafia.votar(mafioso2, ciudadano);
 
-        noche.registrar(mafia.decidirAtaque(new DecisionPorPadrino()));
+        noche.registrar(mafia.decidirAtaque());
 
         assertEquals(RolNulo.INSTANCIA, ciudadano.cartaRevelada());
 
@@ -82,11 +82,9 @@ public class Test08 {
         dia.votar(jugador3, jugadorAEliminar);
         dia.abstenerse(jugadorAEliminar);
 
-        ResultadoVotacion resultado = dia.resolverVotacion(new SinEliminacionPorEmpate());
-
         assertEquals(RolNulo.INSTANCIA, jugadorAEliminar.cartaRevelada());
 
-        dia.aplicarResultadoVotacion(resultado,estado);
+        dia.resolver(estado);
 
         assertTrue(estado.eliminados().contiene(jugadorAEliminar));
 

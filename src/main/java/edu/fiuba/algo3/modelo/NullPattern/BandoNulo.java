@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.NullPattern;
 
 import edu.fiuba.algo3.modelo.Jugador.Bando.Bando;
+import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.ContadorBandos;
 
 public class BandoNulo implements Bando {
 
@@ -9,4 +10,7 @@ public class BandoNulo implements Bando {
 
     private BandoNulo() {
     }
+
+    @Override
+    public void contabilizar(ContadorBandos contador) {}
 }

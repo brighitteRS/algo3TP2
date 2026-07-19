@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.modelo.Roles.*;
 import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.*;
-import edu.fiuba.algo3.modelo.Votacion.ResultadoVotacion;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,9 +36,7 @@ public class Test07 {
         fase.votar(jugador1,jugador2);
         fase.votar(jugador2,jugador1);
 
-        ResultadoVotacion resultado = fase.resolverVotacion(new SinEliminacionPorEmpate());
-
-        fase.aplicarResultadoVotacion(resultado,estado);
+        fase.resolver(estado);
 
         assertFalse(estado.eliminados().contiene(jugador1));
         assertFalse(estado.eliminados().contiene(jugador2));

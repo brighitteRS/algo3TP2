@@ -5,24 +5,33 @@ import edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas.*;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Partida.Jugadores;
 import edu.fiuba.algo3.modelo.Votacion.*;
-import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.ReglaDesempate;
+import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.*;
 
 public class Mafia {
 
     private final Jugadores miembros;
     private final Urna urna;
     private final Votacion votacion;
+    private final ReglaDesempate reglaDesempate;
 
     public Mafia(){
+        this(new SinEliminacionPorEmpate());
+    }
+
+    public Mafia(ReglaDesempate regla){
 
         miembros = new Jugadores();
         urna = new Urna();
         votacion = new Votacion(urna);
+        reglaDesempate = regla;
     }
 
     public void agregar(Jugador jugador){
-
         miembros.agregar(jugador);
+    }
+
+    public void eliminarMiembro(Jugador jugador){
+        miembros.eliminar(jugador);
     }
 
     public void reconocimientoInicial(){
@@ -44,14 +53,11 @@ public class Mafia {
         urna.registrar(new Voto(mafioso, objetivo));
     }
 
-    public ResultadoVotacion resolverVotacion(ReglaDesempate regla) {
-        return votacion.resolver(regla);
+    public ResultadoVotacion resolverVotacion() {
+        return votacion.resolver(reglaDesempate);
     }
 
-    public AccionNocturna decidirAtaque(ReglaDesempate regla){
-
-        Jugador victima = resolverVotacion(regla).ganador();
-
-        return new Ataque(victima);
+    public AccionNocturna decidirAtaque(){
+        return resolverVotacion().accion();
     }
 }

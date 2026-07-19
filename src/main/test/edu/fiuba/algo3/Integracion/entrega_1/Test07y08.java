@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.Partida.Jugadores;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
 import edu.fiuba.algo3.modelo.Roles.*;
-import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.DecisionPorPadrino;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,7 +41,7 @@ public class Test07y08 {
         mafia.votar(mafioso1, ciudadano);
         mafia.votar(mafioso2, ciudadano);
 
-        noche.registrar(mafia.decidirAtaque(new DecisionPorPadrino()));
+        noche.registrar(mafia.decidirAtaque());
         noche.registrar(medico.actuarNoche(ciudadano));
 
         noche.resolver(estado);
@@ -81,7 +80,7 @@ public class Test07y08 {
         mafia.votar(mafioso1, jugador3);
         mafia.votar(mafioso2, jugador3);
 
-        noche.registrar(mafia.decidirAtaque(new DecisionPorPadrino()));
+        noche.registrar(mafia.decidirAtaque());
         noche.registrar(medico.actuarNoche(jugador4));
 
         noche.resolver(estado);

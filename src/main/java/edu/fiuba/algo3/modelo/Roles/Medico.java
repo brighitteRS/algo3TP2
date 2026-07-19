@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.modelo.Roles;
 
 import edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas.*;
+import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.*;
 import edu.fiuba.algo3.modelo.Jugador.*;
 import edu.fiuba.algo3.modelo.Jugador.Bando.BandoCiudadano;
+import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
 
 public class Medico extends Rol {
 
@@ -17,5 +19,16 @@ public class Medico extends Rol {
         actor.registrarEleccion(objetivo);
 
         return new Proteccion(objetivo);
+    }
+
+    @Override
+    public void registrarme(EstadoPartida estado, Jugador jugador) {
+
+        estado.rolesEspeciales().registrarMedico(jugador);
+    }
+
+    @Override
+    public TurnoNocturno agregarTurno(Jugador jugador, TurnoNocturno siguiente) {
+        return new TurnoMedico(jugador, siguiente);
     }
 }

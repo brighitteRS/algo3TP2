@@ -29,4 +29,10 @@ public class HistorialDiurno {
     public void registrarAbstencion(Abstencion abstencion){
         abstenciones.add(abstencion);
     }
+
+    public void limpiar(){
+        nominaciones.clear();
+        votos.clear();
+        abstenciones.clear();
+    }
 }

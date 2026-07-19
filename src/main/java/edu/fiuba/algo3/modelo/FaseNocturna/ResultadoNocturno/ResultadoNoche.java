@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.FaseNocturna.ResultadoNocturno;
 
-
 import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 

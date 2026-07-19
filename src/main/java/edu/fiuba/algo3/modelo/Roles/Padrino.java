@@ -17,6 +17,8 @@ public class Padrino extends Rol {
 
     @Override
     public void registrarme(EstadoPartida estado, Jugador jugador) {
+
         estado.mafia().agregar(jugador);
+        estado.rolesEspeciales().registrarPadrino(jugador);
     }
 }

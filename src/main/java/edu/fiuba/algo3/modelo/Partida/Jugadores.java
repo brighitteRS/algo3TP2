@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.Partida;
 
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
+import edu.fiuba.algo3.modelo.Mazo.Mazo;
+import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.ContadorBandos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,8 @@ public class Jugadores {
 
     public boolean contiene(Jugador jugador){return jugadores.contains(jugador);}
 
+    public int cantidad(){return jugadores.size();}
+
     public boolean estaVacio(){return jugadores.isEmpty();}
 
     public void agregar(Jugador jugador){
@@ -39,6 +43,23 @@ public class Jugadores {
 
         for(Jugador jugador : jugadores){
             jugador.registrarme(estado);
+        }
+    }
+
+    public void contabilizarEn(ContadorBandos contador){
+
+        for(Jugador jugador : jugadores){
+            jugador.contabilizarEn(contador);
+        }
+    }
+
+    public void asignarRoles(Mazo mazo){
+
+        for(Jugador jugador : jugadores){
+
+            jugador.recibirRol(
+                    mazo.repartirCarta()
+            );
         }
     }
 }
