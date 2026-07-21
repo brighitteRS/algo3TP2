@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controllers.Visitors.Fases.Diurna;
 
 import edu.fiuba.algo3.controllers.FaseDiurna.ControladorResultadoDia;
 import edu.fiuba.algo3.controllers.JuegoControlador;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteResultadoDia;
 import edu.fiuba.algo3.modelo.Votacion.*;
 import edu.fiuba.algo3.vistas.Fases.Dia.PantallaResultadoDia;
 import edu.fiuba.algo3.vistas.Pantalla;

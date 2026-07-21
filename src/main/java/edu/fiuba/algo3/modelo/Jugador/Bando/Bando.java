@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Jugador.Bando;
 
-import edu.fiuba.algo3.controllers.Visitors.Bandos.VisitanteBando;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteBando;
 import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.ContadorBandos;
 
 public interface Bando {

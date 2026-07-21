@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controllers.Visitors.Fases.Diurna;
 
 import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteCarta;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteResultadoDia;
 import edu.fiuba.algo3.modelo.Votacion.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;

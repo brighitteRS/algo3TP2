@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.controllers.Visitors.Roles;
+package edu.fiuba.algo3.modelo.Visitors;
 
 import edu.fiuba.algo3.modelo.Roles.*;
 

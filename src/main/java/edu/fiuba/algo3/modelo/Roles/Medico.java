@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Roles;
 
-import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteRol;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteRol;
 import edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas.*;
 import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.*;
 import edu.fiuba.algo3.modelo.Jugador.*;

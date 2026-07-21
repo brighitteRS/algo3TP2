@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Votacion;
 
-import edu.fiuba.algo3.controllers.Visitors.Fases.Diurna.VisitanteResultadoDia;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteResultadoDia;
 import edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas.AccionNocturna;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Partida.EstadoPartida;

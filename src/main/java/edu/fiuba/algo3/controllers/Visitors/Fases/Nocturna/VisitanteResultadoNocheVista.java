@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controllers.Visitors.Fases.Nocturna;
 
 import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteCarta;
 import edu.fiuba.algo3.modelo.FaseNocturna.ResultadoNocturno.*;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteResultadoNoche;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 

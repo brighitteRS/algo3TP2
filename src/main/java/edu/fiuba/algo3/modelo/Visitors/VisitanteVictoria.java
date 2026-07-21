@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.controllers.Visitors.Partida;
+package edu.fiuba.algo3.modelo.Visitors;
 
 import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.*;
 

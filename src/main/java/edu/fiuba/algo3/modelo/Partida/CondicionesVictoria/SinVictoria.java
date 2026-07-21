@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Partida.CondicionesVictoria;
 
-import edu.fiuba.algo3.controllers.Visitors.Partida.VisitanteVictoria;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteVictoria;
 import edu.fiuba.algo3.modelo.Jugador.Bando.*;
 import edu.fiuba.algo3.modelo.NullPattern.BandoNulo;
 

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Roles;
 
-import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteRol;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteRol;
 import edu.fiuba.algo3.modelo.Jugador.Bando.*;
 import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
 import edu.fiuba.algo3.modelo.Jugador.*;

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Jugador;
 
-import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteRol;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteRol;
 import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.TurnoNocturno;
 import edu.fiuba.algo3.modelo.Jugador.Bando.Bando;
 import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.ContadorBandos;

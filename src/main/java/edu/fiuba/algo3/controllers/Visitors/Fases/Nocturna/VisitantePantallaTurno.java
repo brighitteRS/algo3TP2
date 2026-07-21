@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controllers.Visitors.Fases.Nocturna;
 
 import edu.fiuba.algo3.controllers.FaseNocturna.*;
 import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.*;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteTurno;
 import edu.fiuba.algo3.vistas.*;
 import edu.fiuba.algo3.vistas.Fases.Noche.PantallaNocheTerminada;
 import edu.fiuba.algo3.vistas.Fases.Noche.PantallaTurnoDetective;

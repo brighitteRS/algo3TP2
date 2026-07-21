@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controllers.Visitors.Roles;
 
 import edu.fiuba.algo3.modelo.Roles.*;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteRol;
 
 public class VisitanteCarta implements VisitanteRol {
 

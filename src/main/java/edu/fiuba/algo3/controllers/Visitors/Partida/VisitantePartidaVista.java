@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controllers.Visitors.Partida;
 
 import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.*;
+import edu.fiuba.algo3.modelo.Visitors.VisitanteVictoria;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 
