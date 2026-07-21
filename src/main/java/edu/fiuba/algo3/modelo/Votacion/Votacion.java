@@ -75,6 +75,7 @@ public class Votacion {
         for (Voto voto : urna.votos()) {
 
             if (!candidatos.contiene(voto.votado())) {
+
                 candidatos.agregar(voto.votado());
             }
         }
@@ -91,7 +92,6 @@ public class Votacion {
         for (Jugador candidato : candidatos.todos()) {
 
             int votos = contarVotos(candidato);
-
 
             if (votos > mayorCantidad) {
 

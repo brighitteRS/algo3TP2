@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Roles;
 
+import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteRol;
 import edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas.*;
 import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.*;
 import edu.fiuba.algo3.modelo.Jugador.*;
@@ -30,5 +31,10 @@ public class Medico extends Rol {
     @Override
     public TurnoNocturno agregarTurno(Jugador jugador, TurnoNocturno siguiente) {
         return new TurnoMedico(jugador, siguiente);
+    }
+
+    @Override
+    public void aceptar(VisitanteRol visitante){
+        visitante.visitarMedico(this);
     }
 }

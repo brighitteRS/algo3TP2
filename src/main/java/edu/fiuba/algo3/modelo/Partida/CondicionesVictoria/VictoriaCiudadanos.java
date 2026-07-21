@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Partida.CondicionesVictoria;
 
+import edu.fiuba.algo3.controllers.Visitors.Partida.VisitanteVictoria;
 import edu.fiuba.algo3.modelo.Jugador.Bando.*;
 
 public class VictoriaCiudadanos implements ResultadoVictoria {
@@ -12,5 +13,10 @@ public class VictoriaCiudadanos implements ResultadoVictoria {
     @Override
     public Bando ganador() {
         return BandoCiudadano.INSTANCIA;
+    }
+
+    @Override
+    public void aceptarVisitante(VisitanteVictoria visitante){
+        visitante.visitarVictoriaCiudadanos(this);
     }
 }

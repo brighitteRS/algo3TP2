@@ -1,30 +1,28 @@
 package edu.fiuba.algo3.modelo.Partida;
 
-import edu.fiuba.algo3.modelo.Jugador.Bando.Bando;
-import edu.fiuba.algo3.modelo.NullPattern.BandoNulo;
+import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.*;
 
 public class ResultadoPartida {
 
-    private Bando bandoGanador;
-    private boolean terminada;
+    private ResultadoVictoria resultado;
 
     public ResultadoPartida(){
 
-        bandoGanador = BandoNulo.INSTANCIA;
-        terminada = false;
+        resultado = new SinVictoria();
     }
 
-    public void finalizar(Bando ganador){
+    public void finalizar(ResultadoVictoria resultado){
 
-        bandoGanador = ganador;
-        terminada = true;
+        this.resultado = resultado;
     }
 
     public boolean termino(){
-        return terminada;
+
+        return resultado.termino();
     }
 
-    public Bando ganador(){
-        return bandoGanador;
+    public ResultadoVictoria victoria(){
+
+        return resultado;
     }
 }

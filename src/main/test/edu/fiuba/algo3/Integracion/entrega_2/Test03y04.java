@@ -20,10 +20,7 @@ public class Test03y04 {
 
         detective.actuarNoche(jugador1);
 
-        assertThrows(
-                MismaEleccionConsecutivaException.class,
-                () -> detective.actuarNoche(jugador1)
-        );
+        assertThrows(MismaEleccionConsecutivaException.class, () -> detective.actuarNoche(jugador1));
 
         detective.actuarNoche(jugador2);
     }

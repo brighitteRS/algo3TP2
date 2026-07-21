@@ -16,6 +16,8 @@ public class Voto {
         return votado;
     }
 
+    public Jugador votante(){return votante;}
+
     public boolean esDe(Jugador jugador){
         return votante == jugador;
     }

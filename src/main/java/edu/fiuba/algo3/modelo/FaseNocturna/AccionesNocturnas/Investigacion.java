@@ -13,6 +13,16 @@ public class Investigacion implements AccionNocturna {
         this.investigado = investigado;
     }
 
+    public Jugador detective(){
+
+        return detective;
+    }
+
+    public Jugador investigado(){
+
+        return investigado;
+    }
+
     @Override
     public void actuar(){
         detective.recibirResultadoInvestigacion(investigado.bandoVisibleParaInvestigacion());

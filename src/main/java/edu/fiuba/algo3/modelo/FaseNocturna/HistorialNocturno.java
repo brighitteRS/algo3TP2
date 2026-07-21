@@ -29,9 +29,7 @@ public class HistorialNocturno {
         return proteccion;
     }
 
-    public void limpiar() {
-        ataque = AtaqueNulo.INSTANCIA;
-        proteccion = ProteccionNula.INSTANCIA;
-        investigacion = InvestigacionNula.INSTANCIA;
+    public Investigacion investigacion(){
+        return investigacion;
     }
 }

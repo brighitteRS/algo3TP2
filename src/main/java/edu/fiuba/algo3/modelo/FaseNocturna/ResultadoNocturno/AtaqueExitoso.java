@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.FaseNocturna.ResultadoNocturno;
 
+import edu.fiuba.algo3.controllers.Visitors.Fases.Nocturna.VisitanteResultadoNocheVista;
 import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 
@@ -17,7 +18,11 @@ public class AtaqueExitoso extends ResultadoNoche {
     }
 
     @Override
-    public Jugador eliminado() {
-        return jugador;
+    public Jugador eliminado() {return jugador;
+    }
+
+    @Override
+    public void aceptarVisitante(VisitanteResultadoNocheVista visitante){
+        visitante.visitarAtaqueExitoso(this);
     }
 }

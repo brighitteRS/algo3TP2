@@ -23,6 +23,11 @@ public class Nominacion {
         }
     }
 
+    public Jugador nominador(){
+
+        return nominador;
+    }
+
     public Jugador nominado() {
         return nominado;
     }

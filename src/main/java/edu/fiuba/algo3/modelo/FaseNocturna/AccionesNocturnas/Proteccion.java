@@ -15,6 +15,11 @@ public class Proteccion implements AccionNocturna {
         return protegido.equals(jugador);
     }
 
+    public Jugador protegido(){
+
+        return protegido;
+    }
+
     @Override
     public void registrarEn(HistorialNocturno historial) {
         historial.registrarProteccion(this);

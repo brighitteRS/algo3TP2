@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.NullPattern;
 
+import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteRol;
 import edu.fiuba.algo3.modelo.Jugador.Rol;
 
 public class RolNulo extends Rol {
@@ -8,5 +9,9 @@ public class RolNulo extends Rol {
 
     private RolNulo() {
         super(BandoNulo.INSTANCIA);
+    }
+
+    @Override
+    public void aceptar(VisitanteRol visitante) {
     }
 }

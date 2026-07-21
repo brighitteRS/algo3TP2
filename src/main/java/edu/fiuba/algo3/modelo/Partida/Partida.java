@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.Partida;
 
+import edu.fiuba.algo3.modelo.Mazo.Aleatorio;
 import edu.fiuba.algo3.modelo.Mazo.Mazo;
-import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.CondicionVictoria;
-import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.ResultadoVictoria;
+import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.*;
 
 public class Partida {
 
@@ -20,38 +20,51 @@ public class Partida {
 
     public void iniciar(Jugadores jugadores) {
 
-        Mazo mazo = new Mazo(jugadores.cantidad());
-
         estado.inicializar(jugadores);
+    }
 
-        jugadores.asignarRoles(mazo);
+    public void repartirRoles(){
+
+        Mazo mazo = new Mazo(estado.jugadores().cantidad());
+
+        mazo.mezclar(new Aleatorio());
+
+        estado.jugadores().asignarRoles(mazo);
 
         estado.registrarJugadores();
 
+    }
+
+    public void reconocerMafia(){
+
         estado.mafia().reconocimientoInicial();
+    }
+
+    public void iniciarNoche(){
 
         estado.iniciarNoche();
     }
 
-    public void finalizarNoche(){
+    public void iniciarDia(){
 
-        estado.noche().resolver(estado);
+        estado.iniciarDia();
+    }
+
+    public void finalizarNoche(){
 
         verificarVictoria();
 
         if(!resultado.termino()){
-            estado.iniciarDia();
+           iniciarDia();
         }
     }
 
     public void finalizarDia(){
 
-        estado.dia().resolver(estado);
-
         verificarVictoria();
 
         if(!resultado.termino()){
-            estado.iniciarNoche();
+            iniciarNoche();
         }
     }
 
@@ -60,7 +73,7 @@ public class Partida {
         ResultadoVictoria victoria = condicionVictoria.evaluar(estado);
 
         if(victoria.termino()){
-            resultado.finalizar(victoria.ganador());
+            resultado.finalizar(victoria);
         }
     }
 

@@ -5,8 +5,7 @@ import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
 
 public class FaseNocturnaNula extends FaseNocturna {
 
-    public static final FaseNocturnaNula INSTANCIA =
-            new FaseNocturnaNula();
+    public static final FaseNocturnaNula INSTANCIA = new FaseNocturnaNula();
 
     private FaseNocturnaNula(){
     }

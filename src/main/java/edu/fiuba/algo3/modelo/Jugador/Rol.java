@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Jugador;
 
+import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteRol;
 import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.TurnoNocturno;
 import edu.fiuba.algo3.modelo.Jugador.Bando.Bando;
 import edu.fiuba.algo3.modelo.NullPattern.*;
@@ -38,6 +39,8 @@ public abstract class Rol {
     }
 
     public void contabilizar(ContadorBandos contador) {bando.contabilizar(contador);}
+
+    public abstract void aceptar(VisitanteRol visitante);
 
     @Override
     public boolean equals(Object o) {

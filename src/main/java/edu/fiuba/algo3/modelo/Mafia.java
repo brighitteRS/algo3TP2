@@ -12,7 +12,7 @@ public class Mafia {
     private final Jugadores miembros;
     private final Urna urna;
     private final Votacion votacion;
-    private final ReglaDesempate reglaDesempate;
+    private ReglaDesempate reglaDesempate;
 
     public Mafia(){
         this(new SinEliminacionPorEmpate());
@@ -30,8 +30,22 @@ public class Mafia {
         miembros.agregar(jugador);
     }
 
+    public void agregarPadrino(Jugador padrino) {
+
+        agregar(padrino);
+        reglaDesempate = new DecisionPorPadrino(padrino);
+    }
+
     public void eliminarMiembro(Jugador jugador){
         miembros.eliminar(jugador);
+    }
+
+    public Jugador miembro(int indice){
+        return miembros.jugador(indice);
+    }
+
+    public int cantidadMiembros(){
+        return miembros.cantidad();
     }
 
     public void reconocimientoInicial(){
@@ -54,10 +68,12 @@ public class Mafia {
     }
 
     public ResultadoVotacion resolverVotacion() {
+
         return votacion.resolver(reglaDesempate);
     }
 
     public AccionNocturna decidirAtaque(){
+
         return resolverVotacion().accion();
     }
 }

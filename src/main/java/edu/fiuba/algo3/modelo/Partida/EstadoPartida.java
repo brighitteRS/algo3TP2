@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.*;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Mafia;
 import edu.fiuba.algo3.modelo.NullPattern.*;
-import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.DecisionPorPadrino;
 import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.*;
 
 public class EstadoPartida {
@@ -19,8 +18,7 @@ public class EstadoPartida {
     private Mafia mafia;
     private final RolesEspeciales rolesEspeciales;
 
-    private final HistorialNocturno historialNocturno;
-    private final HistorialDiurno historialDiurno;
+    private final HistorialPartida historialPartida;
 
     private FaseNocturna faseNocturna;
     private FaseDiurna faseDiurna;
@@ -35,11 +33,11 @@ public class EstadoPartida {
         rolesEspeciales = new RolesEspeciales();
         mafia = new Mafia();
 
-        historialNocturno = new HistorialNocturno();
-        historialDiurno = new HistorialDiurno();
+        historialPartida = new  HistorialPartida();
 
         faseNocturna = FaseNocturnaNula.INSTANCIA;
         faseDiurna = FaseDiurnaNula.INSTANCIA;
+        faseActual = FaseDiurnaNula.INSTANCIA;
     }
 
     public void inicializar(Jugadores jugadores){
@@ -57,19 +55,16 @@ public class EstadoPartida {
 
         mafia = new Mafia();
 
-        historialNocturno.limpiar();
-        historialDiurno.limpiar();
+        historialPartida.limpiar();
 
         faseNocturna = FaseNocturnaNula.INSTANCIA;
         faseDiurna = FaseDiurnaNula.INSTANCIA;
+        faseActual = FaseDiurnaNula.INSTANCIA;
     }
 
-    public void registrarJugadores(){
+    public void registrarJugadores(){todos.registrarRoles(this);}
 
-        todos.registrarRoles(this);
-
-        mafia = new Mafia(new DecisionPorPadrino(rolesEspeciales.padrino()));
-    }
+    public Jugadores jugadores(){return todos;}
 
     public Jugadores eliminados(){
         return eliminados;
@@ -87,16 +82,6 @@ public class EstadoPartida {
         return rolesEspeciales;
     }
 
-    private TurnoNocturno crearSecuenciaNocturna() {
-
-        TurnoNocturno turno = new TurnoFinal();
-
-        turno = rolesEspeciales.medico().agregarTurno(turno);
-        turno = rolesEspeciales.detective().agregarTurno(turno);
-
-        return new TurnoMafia(mafia, turno);
-    }
-
     public void eliminar(Jugador jugador){
 
         if(!vivos.contiene(jugador)){
@@ -109,22 +94,44 @@ public class EstadoPartida {
 
         mafia.eliminarMiembro(jugador);
 
+        rolesEspeciales.eliminar(jugador);
+
         eliminados.agregar(jugador);
+    }
+
+    private TurnoNocturno crearSecuenciaNocturna() {
+
+        TurnoNocturno turno = new TurnoFinal();
+
+        turno = rolesEspeciales.medico().agregarTurno(turno);
+        turno = rolesEspeciales.detective().agregarTurno(turno);
+
+        return new TurnoMafia(mafia, turno);
     }
 
     public void iniciarNoche() {
 
-        historialNocturno.limpiar();
+        HistorialNocturno historial =
+                new HistorialNocturno();
 
-        faseNocturna = new FaseNocturna(crearSecuenciaNocturna(),historialNocturno);
+        faseNocturna = new FaseNocturna(
+                crearSecuenciaNocturna(),
+                historial
+        );
+
         faseActual = faseNocturna;
     }
 
     public void iniciarDia() {
 
-        historialDiurno.limpiar();
+        HistorialDiurno historial =
+                new HistorialDiurno();
 
-        faseDiurna = new FaseDiurna(new SinEliminacionPorEmpate(),historialDiurno);
+        faseDiurna = new FaseDiurna(
+                new SinEliminacionPorEmpate(),
+                historial
+        );
+
         faseActual = faseDiurna;
     }
 
@@ -132,11 +139,9 @@ public class EstadoPartida {
         return faseActual;
     }
 
-    public FaseNocturna noche() {
-        return faseNocturna;
-    }
+    public FaseNocturna noche() {return faseNocturna;}
 
-    public FaseDiurna dia() {
-        return faseDiurna;
-    }
+    public FaseDiurna dia() {return faseDiurna;}
+
+    public HistorialPartida historialPartida() {return historialPartida;}
 }

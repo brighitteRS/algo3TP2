@@ -37,6 +37,8 @@ public class Jugadores {
         jugadores.remove(jugador);
     }
 
+    public Jugador jugador(int indice) {return jugadores.get(indice);}
+
     public void vaciar(){jugadores.clear();}
 
     public void registrarRoles(EstadoPartida estado){
@@ -56,10 +58,21 @@ public class Jugadores {
     public void asignarRoles(Mazo mazo){
 
         for(Jugador jugador : jugadores){
-
-            jugador.recibirRol(
-                    mazo.repartirCarta()
-            );
+            jugador.recibirRol(mazo.repartirCarta());
         }
+    }
+
+    public Jugadores jugadoresSin(Jugador jugador){
+
+        Jugadores resultado = new Jugadores();
+
+        for(Jugador otro : jugadores){
+
+            if(!otro.equals(jugador)){
+                resultado.agregar(otro);
+            }
+        }
+
+        return resultado;
     }
 }

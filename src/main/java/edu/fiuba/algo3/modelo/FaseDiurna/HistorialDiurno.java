@@ -30,9 +30,18 @@ public class HistorialDiurno {
         abstenciones.add(abstencion);
     }
 
-    public void limpiar(){
-        nominaciones.clear();
-        votos.clear();
-        abstenciones.clear();
+    public List<Nominacion> nominaciones(){
+
+        return nominaciones;
+    }
+
+    public List<Voto> votos(){
+
+        return votos;
+    }
+
+    public List<Abstencion> abstenciones(){
+
+        return abstenciones;
     }
 }

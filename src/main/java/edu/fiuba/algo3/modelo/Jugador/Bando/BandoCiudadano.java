@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Jugador.Bando;
 
+import edu.fiuba.algo3.controllers.Visitors.Bandos.VisitanteBando;
 import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.ContadorBandos;
 
 public class BandoCiudadano implements Bando {
@@ -12,5 +13,10 @@ public class BandoCiudadano implements Bando {
     @Override
     public void contabilizar(ContadorBandos contador) {
         contador.agregarCiudadano();
+    }
+
+    @Override
+    public void aceptarVisitante(VisitanteBando visitante) {
+        visitante.visitarCiudadano(this);
     }
 }

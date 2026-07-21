@@ -26,7 +26,7 @@ public class Test03 {
         partida.finalizarNoche();
 
         assertTrue(partida.resultado().termino());
-        assertEquals(BandoMafia.INSTANCIA, partida.resultado().ganador());
+        assertEquals(BandoMafia.INSTANCIA, partida.resultado().victoria().ganador());
     }
 
     @Test
@@ -45,6 +45,6 @@ public class Test03 {
         partida.finalizarDia();
 
         assertTrue(partida.resultado().termino());
-        assertEquals(BandoCiudadano.INSTANCIA, partida.resultado().ganador());
+        assertEquals(BandoCiudadano.INSTANCIA, partida.resultado().victoria().ganador());
     }
 }

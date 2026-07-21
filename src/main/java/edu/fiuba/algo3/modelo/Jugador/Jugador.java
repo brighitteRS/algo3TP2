@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo.Jugador;
 
+import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteRol;
 import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.TurnoNocturno;
 import edu.fiuba.algo3.modelo.Jugador.Bando.Bando;
 import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.ContadorBandos;
-import edu.fiuba.algo3.modelo.Partida.EstadoPartida;
+import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.modelo.Excepciones.AccesoARolNoPermitidoExcepcion;
 import edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas.AccionNocturna;
-import edu.fiuba.algo3.modelo.Partida.Jugadores;
 import edu.fiuba.algo3.modelo.NullPattern.RolNulo;
 
 public class Jugador {
@@ -33,6 +33,8 @@ public class Jugador {
         this.complices = new Jugadores();
         this.historial = new HistorialEleccionesJugador();
     }
+
+    public int id(){return id;}
 
     public void eliminar() {
         estado = estado.morir();
@@ -88,6 +90,7 @@ public class Jugador {
     }
 
     public void recibirResultadoInvestigacion(Bando bando){
+
         estado.validarPuedeActuar();
         rol.recibirResultadoInvestigacion(bando);
     }
@@ -109,4 +112,8 @@ public class Jugador {
     }
 
     public void contabilizarEn(ContadorBandos contador) {rol.contabilizar(contador);}
+
+    public void aceptarVisitante(VisitanteRol visitante){rol.aceptar(visitante);}
+
+    public Jugadores complices(){return complices;}
 }

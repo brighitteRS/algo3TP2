@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.NullPattern.RolNulo;
 import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.modelo.Roles.*;
 import edu.fiuba.algo3.modelo.Votacion.ReglaDesempates.*;
-import edu.fiuba.algo3.modelo.Votacion.ResultadoVotacion;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

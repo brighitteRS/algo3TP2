@@ -16,10 +16,15 @@ public class Ataque implements AccionNocturna {
     public ResultadoNoche resolverCon(Proteccion proteccion) {
 
         if (proteccion.protegeA(victima)) {
-            return new AtaqueBloqueado();
+            return new AtaqueBloqueado(victima);
         }
 
         return new AtaqueExitoso(victima);
+    }
+
+    public Jugador victima(){
+
+        return victima;
     }
 
     @Override

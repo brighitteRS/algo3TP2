@@ -37,4 +37,19 @@ public class RolesEspeciales {
     }
 
     public Jugador detective(){return detective;}
+
+    public void eliminar(Jugador jugador){
+
+        if(medico.equals(jugador)){
+            medico = JugadorNulo.INSTANCIA;
+        }
+
+        if(detective.equals(jugador)){
+            detective = JugadorNulo.INSTANCIA;
+        }
+
+        if(padrino.equals(jugador)){
+            padrino = JugadorNulo.INSTANCIA;
+        }
+    }
 }

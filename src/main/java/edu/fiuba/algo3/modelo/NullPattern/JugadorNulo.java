@@ -8,6 +8,11 @@ public class JugadorNulo extends Jugador {
     public static final JugadorNulo INSTANCIA = new JugadorNulo();
 
     @Override
+    public int id(){
+        return 0;
+    }
+
+    @Override
     public void eliminar() {
     }
 

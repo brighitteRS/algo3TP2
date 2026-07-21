@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Votacion;
 
+import edu.fiuba.algo3.controllers.Visitors.Fases.Diurna.VisitanteResultadoDia;
 import edu.fiuba.algo3.modelo.FaseNocturna.AccionesNocturnas.AccionNocturna;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.NullPattern.*;
@@ -19,5 +20,11 @@ public class ResultadoEmpate extends ResultadoVotacion {
     @Override
     public Jugador ganador() {
         return JugadorNulo.INSTANCIA;
+    }
+
+    @Override
+    public void aceptarVisitante(VisitanteResultadoDia visitante){
+
+        visitante.visitarEmpate(this);
     }
 }

@@ -25,10 +25,7 @@ public class Test04 {
 
         Partida partida = new Partida(new EstadoPartida(), condicion);
 
-        GeneradorJugadores generadorJugadores = new GeneradorJugadores();
-        Jugadores jugadores = generadorJugadores.crear(5);
-
-        partida.iniciar(jugadores);
+        partida.iniciarNoche();
 
         assertTrue(partida.estado().faseActual() instanceof FaseNocturna);
 

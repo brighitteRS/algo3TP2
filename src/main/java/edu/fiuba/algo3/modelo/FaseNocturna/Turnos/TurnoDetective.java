@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.FaseNocturna.Turnos;
 
+import edu.fiuba.algo3.controllers.Visitors.Fases.Nocturna.VisitanteTurno;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 
 public class TurnoDetective implements TurnoNocturno {
@@ -19,5 +20,10 @@ public class TurnoDetective implements TurnoNocturno {
     @Override
     public TurnoNocturno siguiente() {
         return siguiente;
+    }
+
+    @Override
+    public void aceptarVisitante(VisitanteTurno visitante){
+        visitante.visitarTurnoDetective(this);
     }
 }
