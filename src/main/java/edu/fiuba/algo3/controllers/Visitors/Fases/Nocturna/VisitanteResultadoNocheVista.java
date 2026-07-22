@@ -3,6 +3,7 @@ package edu.fiuba.algo3.controllers.Visitors.Fases.Nocturna;
 import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteCarta;
 import edu.fiuba.algo3.modelo.FaseNocturna.ResultadoNocturno.*;
 import edu.fiuba.algo3.modelo.Visitors.VisitanteResultadoNoche;
+
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -15,17 +16,17 @@ public class VisitanteResultadoNocheVista implements VisitanteResultadoNoche {
 
         resultado = new VBox();
 
-        Label mensaje =
-                new Label(
-                        "Fue eliminado el jugador "
-                                + ataque.eliminado().id()
-                );
+        Label mensaje = mensaje(
+                "Fue eliminado el jugador "
+                        + ataque.eliminado().id()
+        );
 
         VisitanteCarta visitanteCarta =
                 new VisitanteCarta();
 
         ataque.eliminado()
-                .aceptarVisitante(visitanteCarta);
+                .cartaRevelada()
+                .aceptar(visitanteCarta);
 
         resultado.getChildren().addAll(
                 mensaje,
@@ -37,7 +38,7 @@ public class VisitanteResultadoNocheVista implements VisitanteResultadoNoche {
     public void visitarAtaqueBloqueado(AtaqueBloqueado ataque){
 
         resultado = new VBox(
-                new Label(
+                mensaje(
                         "El médico salvó al jugador "
                                 + ataque.objetivo().id()
                 )
@@ -48,11 +49,23 @@ public class VisitanteResultadoNocheVista implements VisitanteResultadoNoche {
     public void visitarSinAtaque(SinAtaque ataque){
 
         resultado = new VBox(
-                new Label("La noche pasó sin eliminaciones")
+                mensaje("La noche pasó sin eliminaciones")
         );
     }
 
     public VBox resultado(){
         return resultado;
+    }
+
+    private Label mensaje(String texto){
+
+        Label label = new Label(texto);
+
+        label.setStyle(
+                "-fx-text-fill: white;" +
+                        "-fx-font-size: 14px;"
+        );
+
+        return label;
     }
 }

@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controllers.FaseDiurna;
 
 import edu.fiuba.algo3.controllers.JuegoControlador;
-import edu.fiuba.algo3.controllers.Visitors.Fases.Diurna.VisitantePantallaResultadoDia;
 import edu.fiuba.algo3.modelo.FaseDiurna.FaseDiurna;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.modelo.Partida.Jugadores;
@@ -20,10 +19,13 @@ public class ControladorFaseDiurna {
     }
 
     public void mostrarPantallaActual() {
+
         mostrarDebate();
     }
 
     public void mostrarDebate() {
+
+        juego.notificarEstado("Momento de Debate");
 
         juego.mostrarPantalla(
                 new PantallaDebate(
@@ -33,6 +35,8 @@ public class ControladorFaseDiurna {
     }
 
     public void mostrarNominaciones() {
+
+        juego.notificarEstado("Momento de Nominacion");
 
         juego.mostrarPantalla(
                 new PantallaNominaciones(
@@ -45,6 +49,8 @@ public class ControladorFaseDiurna {
 
         reiniciarTurno();
 
+        juego.notificarEstado("Momento de Votacion");
+
         juego.mostrarPantalla(
                 new PantallaVotacion(
                         new ControladorVotacion(this)
@@ -54,14 +60,14 @@ public class ControladorFaseDiurna {
 
     public void mostrarResultado(){
 
-        VisitantePantallaResultadoDia visitante =
-                new VisitantePantallaResultadoDia(juego);
+        juego.notificarEstado("Fase Diurna");
 
-        fase.resultado()
-                .aceptarVisitante(visitante);
-
-        juego.mostrarPantalla(
-                visitante.pantalla()
+        juego.mostrarPantalla(new PantallaResultadoDia(
+                        new ControladorResultadoDia(
+                                juego,
+                                fase.resultado()
+                        )
+                )
         );
     }
 

@@ -6,5 +6,7 @@ public interface ObservadorJuego {
 
     void actualizar(String mensaje);
 
+    void actualizarEstado(String estado);
+
     void mostrarPantalla(Pantalla pantalla);
 }

@@ -1,7 +1,10 @@
 package edu.fiuba.algo3.controllers.FaseNocturna;
 
+import edu.fiuba.algo3.controllers.Visitors.Fases.Nocturna.VisitanteResultadoNocheVista;
 import edu.fiuba.algo3.modelo.FaseNocturna.ResultadoNocturno.ResultadoNoche;
 import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.TurnoFinal;
+
+import javafx.scene.layout.VBox;
 
 public class ControladorTurnoFinal {
 
@@ -29,5 +32,16 @@ public class ControladorTurnoFinal {
     public void continuar(){
 
         fase.finalizarNoche();
+    }
+
+    public VBox resultadoVista(){
+
+        VisitanteResultadoNocheVista visitante =
+                new VisitanteResultadoNocheVista();
+
+        fase.resultado()
+                .aceptarVisitante(visitante);
+
+        return visitante.resultado();
     }
 }

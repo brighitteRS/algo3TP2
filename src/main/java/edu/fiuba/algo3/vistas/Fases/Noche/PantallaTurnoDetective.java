@@ -1,13 +1,12 @@
 package edu.fiuba.algo3.vistas.Fases.Noche;
 
 import edu.fiuba.algo3.controllers.FaseNocturna.ControladorTurnoDetective;
-import edu.fiuba.algo3.controllers.Visitors.Bandos.VisitanteResultadoBando;
-import edu.fiuba.algo3.modelo.Jugador.Bando.Bando;
-import edu.fiuba.algo3.modelo.Jugador.Jugador;
 import edu.fiuba.algo3.vistas.Pantalla;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.geometry.Pos;
+import javafx.scene.layout.FlowPane;
 
 public class PantallaTurnoDetective extends Pantalla {
 
@@ -15,50 +14,71 @@ public class PantallaTurnoDetective extends Pantalla {
 
         Label titulo = new Label("Turno del Detective");
 
-        getChildren().add(titulo);
+        Label instruccion = new Label(
+                "Seleccione un jugador para investigar"
+        );
 
+        estiloTitulo(titulo);
+        estiloTextoClaro(instruccion);
 
-        for(Jugador jugador : controlador.objetivos().todos()){
+        FlowPane jugadores = new FlowPane();
+
+        jugadores.setAlignment(Pos.CENTER);
+        jugadores.setHgap(10);
+        jugadores.setVgap(10);
+        jugadores.setPrefWrapLength(450);
+
+        for(int i = 0; i < controlador.cantidadObjetivos(); i++){
+
+            int indice = i;
 
             Button boton = new Button(
-                    "Investigar jugador " + jugador.id()
+                    "Jugador " + controlador.idObjetivo(indice)
             );
+
+            estiloBoton(boton);
 
             boton.setOnAction(e -> {
 
-                controlador.investigar(jugador);
+                controlador.investigar(controlador.objetivo(indice));
 
                 mostrarResultado(controlador);
 
             });
 
-            getChildren().add(boton);
+            jugadores.getChildren().add(boton);
         }
-    }
 
+        getChildren().addAll(
+                titulo,
+                instruccion,
+                jugadores
+        );
+    }
 
     private void mostrarResultado(ControladorTurnoDetective controlador){
 
         getChildren().clear();
 
-        Bando bando = controlador.obtenerInvestigacion();
+        Label titulo = new Label("Resultado de la investigación");
+        estiloTitulo(titulo);
 
-        VisitanteResultadoBando visitante =
-                new VisitanteResultadoBando();
-
-        bando.aceptarVisitante(visitante);
-
+        Label resultado = new Label(
+                controlador.resultadoInvestigacion()
+        );
+        estiloTextoClaro(resultado);
 
         Button continuar = new Button("Continuar");
+        estiloBoton(continuar);
 
         continuar.setOnAction(e -> {
-
             controlador.continuar();
 
         });
 
         getChildren().addAll(
-                visitante.resultado(),
+                titulo,
+                resultado,
                 continuar
         );
     }

@@ -12,7 +12,7 @@ public class ControladorVotacion {
         this.fase = fase;
     }
 
-    public Jugadores candidatos(){
+    private Jugadores candidatos(){
 
         return fase.candidatosNominados();
     }
@@ -46,5 +46,23 @@ public class ControladorVotacion {
             fase.resolverVotacion();
             fase.mostrarResultado();
         }
+    }
+
+    public int cantidadCandidatos(){
+
+        return candidatos().cantidad();
+    }
+
+    public int idCandidato(int indice){
+
+        return candidatos()
+                .jugador(indice)
+                .id();
+    }
+
+    public Jugador candidato(int indice){
+
+        return candidatos()
+                .jugador(indice);
     }
 }

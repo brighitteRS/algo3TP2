@@ -9,8 +9,10 @@ public class PantallaDebate extends Pantalla {
     public PantallaDebate(ControladorDebate controlador){
 
         Label titulo = new Label("Debate");
+        estiloTitulo(titulo);
 
         TextArea chat = new TextArea();
+
         chat.setEditable(false);
         chat.setPrefHeight(200);
 
@@ -18,6 +20,12 @@ public class PantallaDebate extends Pantalla {
         mensaje.setPromptText("Escriba su mensaje...");
 
         Button enviar = new Button("Enviar");
+        Button continuar = new Button(
+                "Ir a nominaciones"
+        );
+
+        estiloBoton(enviar);
+        estiloBoton(continuar);
 
         enviar.setOnAction(e -> {
 
@@ -32,10 +40,6 @@ public class PantallaDebate extends Pantalla {
                 mensaje.clear();
             }
         });
-
-        Button continuar = new Button(
-                "Ir a nominaciones"
-        );
 
         continuar.setOnAction(e ->
                 controlador.continuar()

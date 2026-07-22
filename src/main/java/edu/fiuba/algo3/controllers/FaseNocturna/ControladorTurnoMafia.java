@@ -3,7 +3,6 @@ package edu.fiuba.algo3.controllers.FaseNocturna;
 import edu.fiuba.algo3.modelo.Excepciones.NoSePuedeAtacarAMafiosoException;
 import edu.fiuba.algo3.modelo.FaseNocturna.Turnos.TurnoMafia;
 import edu.fiuba.algo3.modelo.Jugador.Jugador;
-import edu.fiuba.algo3.modelo.Partida.Jugadores;
 
 public class ControladorTurnoMafia {
 
@@ -50,7 +49,6 @@ public class ControladorTurnoMafia {
         }
     }
 
-
     private Jugador mafiosoActual(){
 
         return turno.mafia()
@@ -72,12 +70,29 @@ public class ControladorTurnoMafia {
         fase.avanzar();
     }
 
-    public Jugadores objetivos(){
+    public int cantidadObjetivos() {
 
-        return fase.jugadoresActivos();
+        return fase.jugadoresActivos().cantidad();
+    }
+
+    public int idObjetivo(int indice) {
+
+        return fase.jugadoresActivos()
+                .jugador(indice)
+                .id();
+    }
+
+    public Jugador objetivo(int indice) {
+
+        return fase.jugadoresActivos()
+                .jugador(indice);
     }
 
     public int idMafiosoActual(){
+
+        if(terminoVotacion()){
+            return 0;
+        }
 
         return mafiosoActual().id();
     }

@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.controllers.JuegoControlador;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 
 public class PantallaInicio extends Pantalla {
 
@@ -17,9 +15,16 @@ public class PantallaInicio extends Pantalla {
 
         TextField cantidad = new TextField();
 
+        estiloCampoTexto(cantidad);
+
         Button iniciar = new Button(
                 "Iniciar partida"
         );
+
+        estiloBoton(iniciar);
+
+        estiloTitulo(titulo);
+        estiloTextoClaro(jugadores);
 
         iniciar.setOnAction(event -> {
 
@@ -30,9 +35,7 @@ public class PantallaInicio extends Pantalla {
                                 cantidad.getText().trim()
                         );
 
-
                 controlador.iniciarPartida(cantidadJugadores);
-
 
             }
             catch(NumberFormatException e){
@@ -42,10 +45,6 @@ public class PantallaInicio extends Pantalla {
                 );
             }
         });
-
-        setSpacing(20);
-
-        setAlignment(Pos.CENTER);
 
         getChildren().addAll(
                 titulo,

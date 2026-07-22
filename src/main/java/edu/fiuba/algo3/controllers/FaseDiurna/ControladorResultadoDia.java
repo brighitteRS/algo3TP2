@@ -1,7 +1,10 @@
 package edu.fiuba.algo3.controllers.FaseDiurna;
 
 import edu.fiuba.algo3.controllers.JuegoControlador;
+import edu.fiuba.algo3.controllers.Visitors.Fases.Diurna.VisitanteResultadoDiaVista;
 import edu.fiuba.algo3.modelo.Votacion.ResultadoVotacion;
+
+import javafx.scene.layout.VBox;
 
 public class ControladorResultadoDia {
 
@@ -16,11 +19,17 @@ public class ControladorResultadoDia {
         this.resultado = resultado;
     }
 
-    public ResultadoVotacion resultado(){
-        return resultado;
-    }
-
     public void continuar(){
         juego.finalizarDia();
+    }
+
+    public VBox resultadoVista(){
+
+        VisitanteResultadoDiaVista visitante =
+                new VisitanteResultadoDiaVista();
+
+        resultado.aceptarVisitante(visitante);
+
+        return visitante.resultado();
     }
 }

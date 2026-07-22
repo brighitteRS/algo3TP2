@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.vistas.Partida;
 
 import edu.fiuba.algo3.controllers.ControladorReconocimiento;
-import edu.fiuba.algo3.modelo.Jugador.Jugador;
-import edu.fiuba.algo3.modelo.Partida.Jugadores;
 import edu.fiuba.algo3.vistas.Pantalla;
+
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -12,40 +12,64 @@ public class PantallaReconocimiento extends Pantalla {
 
     public PantallaReconocimiento(ControladorReconocimiento controlador){
 
-        Label titulo = new Label("RECONOCIMIENTO");
+        Label titulo = new Label("RECONOCIMIENTO DE MAFIA");
 
         Label jugador = new Label(
                 "Jugador " + controlador.numeroJugadorActual()
         );
 
-        Button ver = new Button("Ver");
+        Label instruccion = new Label(
+                "Revisa tus cómplices antes de continuar."
+        );
+
+        estiloTitulo(titulo);
+        estiloTextoClaro(jugador);
+        estiloTextoClaro(instruccion);
+
+        Button ver = new Button("Ver cómplices");
+        Button continuar = new Button("Continuar");
+
+        estiloBoton(ver);
+        estiloBoton(continuar);
 
         VBox informacion = new VBox();
 
-        Button continuar = new Button("Continuar");
+        informacion.setSpacing(10);
+        informacion.setAlignment(Pos.CENTER);
 
         ver.setOnAction(event -> {
 
             informacion.getChildren().clear();
 
-            informacion.getChildren().add(
-                    controlador.cartaJugadorActual()
-            );
+            if(controlador.tieneComplices()) {
 
-            Jugadores complices = controlador.complicesJugadorActual();
+                Label tituloComplices = new Label("Tus cómplices:");
+                estiloTextoClaro(tituloComplices);
 
-            if (!complices.todos().isEmpty()) {
+                informacion.getChildren().add(tituloComplices);
 
-                informacion.getChildren().add(
-                        new Label("Tus cómplices:")
+                for(int i = 0; i < controlador.cantidadComplices(); i++){
+
+                    Label compliceLabel =
+                            new Label(
+                                    "Jugador "
+                                            + controlador.idComplice(i)
+                            );
+
+                    estiloTextoClaro(compliceLabel);
+
+                    informacion.getChildren().add(compliceLabel);
+                }
+
+            } else {
+
+                Label mensaje = new Label(
+                        "No tienes cómplices para reconocer."
                 );
 
-                for (Jugador complice : complices.todos()) {
+                estiloTextoClaro(mensaje);
 
-                    informacion.getChildren().add(
-                            new Label("Jugador " + complice.id())
-                    );
-                }
+                informacion.getChildren().add(mensaje);
             }
         });
 
@@ -56,6 +80,7 @@ public class PantallaReconocimiento extends Pantalla {
         getChildren().addAll(
                 titulo,
                 jugador,
+                instruccion,
                 ver,
                 informacion,
                 continuar

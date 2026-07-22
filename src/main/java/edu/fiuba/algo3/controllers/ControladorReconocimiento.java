@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controllers;
 
 import edu.fiuba.algo3.controllers.Visitors.Roles.*;
-import edu.fiuba.algo3.modelo.Partida.Jugadores;
 import edu.fiuba.algo3.vistas.Partida.PantallaReconocimiento;
 
 public class ControladorReconocimiento {
@@ -19,16 +18,6 @@ public class ControladorReconocimiento {
         return jugadorActual + 1;
     }
 
-    public CartaRolVista cartaJugadorActual(){
-
-        return juego.cartaJugador(jugadorActual);
-    }
-
-    public Jugadores complicesJugadorActual(){
-
-        return juego.complicesJugador(jugadorActual);
-    }
-
     public void continuar(){
 
         jugadorActual++;
@@ -40,6 +29,26 @@ public class ControladorReconocimiento {
         }
 
         mostrarPantalla();
+    }
+
+    public boolean tieneComplices(){
+
+        return !juego.complicesJugador(jugadorActual)
+                .todos()
+                .isEmpty();
+    }
+
+    public int cantidadComplices(){
+
+        return juego.complicesJugador(jugadorActual)
+                .cantidad();
+    }
+
+    public int idComplice(int indice){
+
+        return juego.complicesJugador(jugadorActual)
+                .jugador(indice)
+                .id();
     }
 
     public void mostrarPantalla(){

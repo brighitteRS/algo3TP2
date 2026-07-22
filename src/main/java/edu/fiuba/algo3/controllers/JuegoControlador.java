@@ -2,8 +2,7 @@ package edu.fiuba.algo3.controllers;
 
 import edu.fiuba.algo3.controllers.FaseDiurna.ControladorFaseDiurna;
 import edu.fiuba.algo3.controllers.FaseNocturna.ControladorFaseNocturna;
-import edu.fiuba.algo3.controllers.Visitors.Roles.CartaRolVista;
-import edu.fiuba.algo3.controllers.Visitors.Roles.VisitanteCarta;
+import edu.fiuba.algo3.controllers.Visitors.Roles.*;
 import edu.fiuba.algo3.modelo.Excepciones.CantidadDeJugadoresInvalidaExcepcion;
 import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.CondicionVictoriaBando;
@@ -19,7 +18,6 @@ public class JuegoControlador {
     private final GeneradorJugadores generador;
 
     private Partida partida;
-    private Jugadores jugadores;
 
     public JuegoControlador(){
 
@@ -48,11 +46,19 @@ public class JuegoControlador {
         }
     }
 
+    public void notificarEstado(String estado){
+
+        for(ObservadorJuego observador: observadores){
+
+            observador.actualizarEstado(estado);
+        }
+    }
+
     public void iniciarPartida(int cantidad){
 
         try {
 
-            jugadores = generador.crear(cantidad);
+            Jugadores jugadores = generador.crear(cantidad);
 
             partida = new Partida(
                     new EstadoPartida(),
@@ -62,12 +68,14 @@ public class JuegoControlador {
             partida.iniciar(jugadores);
             partida.repartirRoles();
 
+            notificarEstado("Reparto de roles");
+
             notificar("Partida iniciada");
 
             new ControladorRepartoRoles(this)
                     .mostrarPantalla();
 
-        }catch(CantidadDeJugadoresInvalidaExcepcion e){
+        } catch(CantidadDeJugadoresInvalidaExcepcion e){
 
             notificar(e.getMessage());
         }
@@ -77,7 +85,7 @@ public class JuegoControlador {
 
         VisitanteCarta visitante = new VisitanteCarta();
 
-        jugadores
+        partida.estado().jugadores()
                 .jugador(indice)
                 .aceptarVisitante(visitante);
 
@@ -86,6 +94,8 @@ public class JuegoControlador {
 
     public void mostrarReconocimiento(){
 
+        notificarEstado("Reconocimiento de roles");
+
         new ControladorReconocimiento(this)
                 .mostrarPantalla();
     }
@@ -93,9 +103,16 @@ public class JuegoControlador {
     private void verificarVictoria(){
 
         if(partida.resultado().termino()){
+
+            notificarEstado("Resumen de partida");
+
+            ControladorResultadoPartida controladorResultado =
+                    new ControladorResultadoPartida(partida);
+
             mostrarPantalla(
                     new PantallaFinal(
-                            new ControladorResultadoPartida(partida)
+                            controladorResultado,
+                            this
                     )
             );
         }
@@ -105,9 +122,12 @@ public class JuegoControlador {
 
         partida.finalizarNoche();
 
+        notificarEstado("Fase Nocturna");
+
         if(partida.resultado().termino()){
 
            verificarVictoria();
+
         } else {
 
             iniciarDia();
@@ -118,9 +138,12 @@ public class JuegoControlador {
 
         partida.finalizarDia();
 
+        notificarEstado("Fase Diurna");
+
         if(partida.resultado().termino()){
 
            verificarVictoria();
+
         } else {
 
             iniciarNoche();
@@ -131,6 +154,8 @@ public class JuegoControlador {
 
         partida.iniciarNoche();
 
+        notificarEstado("Fase nocturna");
+
         new ControladorFaseNocturna(
                 this,
                 partida.estado().noche()
@@ -140,6 +165,8 @@ public class JuegoControlador {
     public void iniciarDia(){
 
         partida.iniciarDia();
+
+        notificarEstado("Fase diurna");
 
         new ControladorFaseDiurna(
                 this,
@@ -154,12 +181,17 @@ public class JuegoControlador {
 
     public Jugadores complicesJugador(int indice){
 
-        return jugadores.jugador(indice).complices();
+        return partida.estado()
+                .jugadores()
+                .jugador(indice)
+                .complices();
     }
 
     public int cantidadJugadores(){
 
-        return jugadores.cantidad();
+        return partida.estado()
+                .jugadores()
+                .cantidad();
     }
 
     public EstadoPartida estado(){

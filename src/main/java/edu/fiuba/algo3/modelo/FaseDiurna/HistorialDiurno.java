@@ -17,7 +17,6 @@ public class HistorialDiurno {
     private final List<Abstencion> abstenciones =
             new ArrayList<>();
 
-
     public void registrarNominacion(Nominacion nominacion){
         nominaciones.add(nominacion);
     }
