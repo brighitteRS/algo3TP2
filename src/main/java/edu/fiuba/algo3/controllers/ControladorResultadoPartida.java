@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.ResultadoVictoria;
 import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.controllers.Visitors.Roles.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControladorResultadoPartida {
@@ -84,7 +85,7 @@ public class ControladorResultadoPartida {
 
     public List<String> resumenNoches(){
 
-        List<String> resumen = new java.util.ArrayList<>();
+        List<String> resumen = new ArrayList<>();
 
         int numero = 1;
 
@@ -124,7 +125,7 @@ public class ControladorResultadoPartida {
 
     public List<String> resumenDias(){
 
-        List<String> resumen = new java.util.ArrayList<>();
+        List<String> resumen = new ArrayList<>();
 
         int numero = 1;
 
