@@ -65,9 +65,7 @@ public class Jugador {
         return complices.contiene(jugador);
     }
 
-    public void registrarme(EstadoPartida estado) {
-        rol.registrarme(estado, this);
-    }
+    public void registrarme(EstadoPartida estado) {rol.registrarme(estado, this);}
 
     public TurnoNocturno agregarTurno(TurnoNocturno siguiente) {
         return rol.agregarTurno(this, siguiente);

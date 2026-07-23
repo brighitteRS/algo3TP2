@@ -37,7 +37,7 @@ public class EstadoPartida {
 
         faseNocturna = FaseNocturnaNula.INSTANCIA;
         faseDiurna = FaseDiurnaNula.INSTANCIA;
-        faseActual = FaseDiurnaNula.INSTANCIA;
+        faseActual = FaseNula.INSTANCIA;
     }
 
     public void inicializar(Jugadores jugadores){
@@ -59,7 +59,7 @@ public class EstadoPartida {
 
         faseNocturna = FaseNocturnaNula.INSTANCIA;
         faseDiurna = FaseDiurnaNula.INSTANCIA;
-        faseActual = FaseDiurnaNula.INSTANCIA;
+        faseActual = FaseNula.INSTANCIA;
     }
 
     public void registrarJugadores(){todos.registrarRoles(this);}
@@ -135,9 +135,7 @@ public class EstadoPartida {
         faseActual = faseDiurna;
     }
 
-    public Fase faseActual() {
-        return faseActual;
-    }
+    public Fase faseActual() {return faseActual;}
 
     public FaseNocturna noche() {return faseNocturna;}
 

@@ -46,9 +46,7 @@ public class ControladorFaseDiurna {
     }
 
     public void mostrarVotacion() {
-
-        reiniciarTurno();
-
+        
         juego.notificarEstado("Momento de Votacion");
 
         juego.mostrarPantalla(
@@ -119,5 +117,9 @@ public class ControladorFaseDiurna {
     public void reiniciarTurno(){
 
         jugadorActual = 0;
+    }
+
+    public int idJugador(){
+        return jugadorActual().id();
     }
 }

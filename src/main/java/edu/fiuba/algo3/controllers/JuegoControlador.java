@@ -6,6 +6,7 @@ import edu.fiuba.algo3.controllers.Visitors.Roles.*;
 import edu.fiuba.algo3.modelo.Excepciones.CantidadDeJugadoresInvalidaExcepcion;
 import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.CondicionVictoriaBando;
+import edu.fiuba.algo3.sonido.MusicaJuego;
 import edu.fiuba.algo3.vistas.*;
 import edu.fiuba.algo3.vistas.Partida.PantallaFinal;
 
@@ -55,6 +56,8 @@ public class JuegoControlador {
     }
 
     public void iniciarPartida(int cantidad){
+
+        MusicaJuego.iniciar();
 
         try {
 
@@ -126,6 +129,7 @@ public class JuegoControlador {
 
         if(partida.resultado().termino()){
 
+            MusicaJuego.detener();
            verificarVictoria();
 
         } else {
@@ -142,6 +146,7 @@ public class JuegoControlador {
 
         if(partida.resultado().termino()){
 
+            MusicaJuego.detener();
            verificarVictoria();
 
         } else {

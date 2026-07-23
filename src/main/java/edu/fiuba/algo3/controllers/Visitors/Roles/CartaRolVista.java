@@ -16,7 +16,6 @@ public abstract class CartaRolVista extends VBox {
         setSpacing(10);
     }
 
-
     protected ImageView crearImagen(String ruta){
 
         Image imagen = new Image(

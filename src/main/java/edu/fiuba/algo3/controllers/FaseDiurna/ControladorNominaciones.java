@@ -31,6 +31,7 @@ public class ControladorNominaciones {
 
         if(fase.terminoTurnos()){
 
+            fase.reiniciarTurno();
             fase.mostrarVotacion();
 
         } else {
@@ -60,5 +61,9 @@ public class ControladorNominaciones {
 
         return candidatos()
                 .jugador(indice);
+    }
+
+    public int idJugador(){
+        return fase.idJugador();
     }
 }

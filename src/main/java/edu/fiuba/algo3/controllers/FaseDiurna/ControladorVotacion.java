@@ -30,6 +30,8 @@ public class ControladorVotacion {
 
             fase.resolverVotacion();
             fase.mostrarResultado();
+        } else {
+            fase.mostrarVotacion();
         }
     }
 
@@ -45,6 +47,8 @@ public class ControladorVotacion {
 
             fase.resolverVotacion();
             fase.mostrarResultado();
+        } else {
+            fase.mostrarVotacion();
         }
     }
 
@@ -64,5 +68,9 @@ public class ControladorVotacion {
 
         return candidatos()
                 .jugador(indice);
+    }
+
+    public int idJugador(){
+        return fase.idJugador();
     }
 }

@@ -21,8 +21,8 @@ public class VistaPrincipal extends BorderPane
         mensaje = new Label();
         estado = new Label();
 
-        estiloBarra(estado);
-        estiloBarra(mensaje);
+        estiloEstado(estado);
+        estiloMensaje(mensaje);
 
         setTop(estado);
 
@@ -64,10 +64,18 @@ public class VistaPrincipal extends BorderPane
         setCenter(pantalla);
     }
 
-    private void estiloBarra(Label label) {
+    private void estiloEstado(Label label) {
         label.setStyle(
                 "-fx-text-fill: white;" +
-                        "-fx-font-size: 14px;"
+                        "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;"
+        );
+    }
+
+    private void estiloMensaje(Label label) {
+        label.setStyle(
+                "-fx-text-fill: white;" +
+                        "-fx-font-size: 16px;"
         );
     }
 }

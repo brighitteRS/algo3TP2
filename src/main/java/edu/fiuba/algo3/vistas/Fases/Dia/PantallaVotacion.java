@@ -18,6 +18,10 @@ public class PantallaVotacion extends Pantalla {
 
         getChildren().add(titulo);
 
+        Label jugador = new Label("Jugador " + controlador.idJugador() + ", es tu turno");
+        estiloTextoClaro(jugador);
+        getChildren().add(jugador);
+
         for(int i = 0; i < controlador.cantidadCandidatos(); i++) {
 
             int indice = i;

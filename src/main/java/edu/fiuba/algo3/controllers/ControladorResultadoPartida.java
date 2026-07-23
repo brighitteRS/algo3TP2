@@ -5,6 +5,8 @@ import edu.fiuba.algo3.modelo.FaseNocturna.HistorialNocturno;
 import edu.fiuba.algo3.modelo.Partida.CondicionesVictoria.ResultadoVictoria;
 import edu.fiuba.algo3.modelo.Partida.*;
 import edu.fiuba.algo3.controllers.Visitors.Roles.*;
+import edu.fiuba.algo3.modelo.Votacion.*;
+import edu.fiuba.algo3.modelo.Votacion.Nominaciones.Nominacion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +140,7 @@ public class ControladorResultadoPartida {
 
             resumen.add("Nominaciones");
 
-            for(var nominacion : dia.nominaciones()){
+            for(Nominacion nominacion : dia.nominaciones()){
 
                 resumen.add(
                         "Jugador "
@@ -150,7 +152,7 @@ public class ControladorResultadoPartida {
 
             resumen.add("Votos");
 
-            for(var voto : dia.votos()){
+            for(Voto voto : dia.votos()){
 
                 resumen.add(
                         "Jugador "
@@ -162,7 +164,7 @@ public class ControladorResultadoPartida {
 
             resumen.add("Abstenciones");
 
-            for(var abstencion : dia.abstenciones()){
+            for(Abstencion abstencion : dia.abstenciones()){
 
                 resumen.add(
                         "Jugador "
